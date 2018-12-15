@@ -1,0 +1,16 @@
+{
+  "name": "dictionary-tool",
+  "version": "1.0.0",
+  "description": "A CLI Dictionary Tool",
+  "main": "tool.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gokul Sadanandam",
+  "license": "ISC"
+}
