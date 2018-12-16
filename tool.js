@@ -57,7 +57,7 @@ const app = {
         if (process.argv[3]) {
             this.type = process.argv[2] || "dict"
             this.word = process.argv[3]
-        } else if (process.argv[2]) {
+        } else if (process.argv[2]=="play") {
             this.type = "game"
         } else {
             this.type = "dict"
@@ -88,7 +88,14 @@ const app = {
                 this.playgame()
                 break;
             default:
-                console.log("Invalid Command")
+                console.log(" Invalid Command. The Following Commands are Valid.")
+                console.log(" 1) node tools def <word> - to get word definition(s)")
+                console.log(" 2) node tools syn <word> - to get word synonym(s)")
+                console.log(" 3) node tools ant <word> - to get word antonym(s)")
+                console.log(" 4) node tools ex <word> - to get word example(s)")
+                console.log(" 5) node tools dict <word> - to get word details")
+                console.log(" 6) node tools play - to play word finder game")
+                process.exit()                
                 break;
         }
     },
@@ -231,3 +238,5 @@ const app = {
     }
 }
 module.exports = app.parseInput()
+
+                
