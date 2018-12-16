@@ -57,7 +57,7 @@ const app = {
         if (process.argv[3]) {
             this.type = process.argv[2] || "dict"
             this.word = process.argv[3]
-        } else if (process.argv[2]=="play") {
+        } else if (process.argv[2] == "play") {
             this.type = "game"
         } else {
             this.type = "dict"
@@ -95,7 +95,7 @@ const app = {
                 console.log(" 4) node tools ex <word> - to get word example(s)")
                 console.log(" 5) node tools dict <word> - to get word details")
                 console.log(" 6) node tools play - to play word finder game")
-                process.exit()                
+                process.exit()
                 break;
         }
     },
@@ -154,44 +154,43 @@ const app = {
                     this.printResult(this.parsedresults)
                 }
             } else {
-              if(game){
-                this.playgame()
-              }else{
-                console.log("\n\tNO " + value.toUpperCase() + " FOUND")
-              }
-              }
+                if (game) {
+                    this.playgame()
+                } else {
+                    console.log("\n\tNO " + value.toUpperCase() + " FOUND")
+                }
+            }
         })
     },
     getUserInput: function(question, word, type, words) {
-
         rl.question(question, (answer) => {
             this.answer = answer
             this.parseanswer(answer, word, type, words)
         })
     },
-    shuffle : function(word,type,words){
-  
-      sword = word.split("")
-  
-      for(var i = sword.length - 1; i > 0; i--) {
-        var j = Math.floor(Math.random() * (i + 1));
-        var tmp = sword[i];
-        sword[i] = sword[j];
-        sword[j] = tmp;
-      } 
-    sword = sword.join("");
-    console.log(" The Scrambled Word is " + sword + "\n")
-    this.getUserInput(' Try to Answer now-> \n',word,type,words)      
+    shuffle: function(word, type, words) {
+
+        sword = word.split("")
+
+        for (var i = sword.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var tmp = sword[i];
+            sword[i] = sword[j];
+            sword[j] = tmp;
+        }
+        sword = sword.join("");
+        console.log(" The Scrambled Word is " + sword + "\n")
+        this.getUserInput(' Try to Answer now-> \n', word, type, words)
     },
-    gethint:function(word ,type,words){
-      console.log(words)
-      let random_num = this.getRandomIndex(0,words.length-1)
-      if((random_num%2)==1){
-        console.log("Another " + type + ' of the Word is "' + words[random_num] + '"')
-        this.getUserInput('Enter the Word\n',word,type,words)
-      }else{
-        this.shuffle(word,type,words)
-      }
+    gethint: function(word, type, words) {
+        console.log(words)
+        let random_num = this.getRandomIndex(0, words.length - 1)
+        if ((random_num % 2) == 1) {
+            console.log("Another " + type + ' of the Word is "' + words[random_num] + '"')
+            this.getUserInput('Enter the Word\n', word, type, words)
+        } else {
+            this.shuffle(word, type, words)
+        }
     },
     parseanswer: function(answer, word, type, words) {
         if ((answer.trim().toLowerCase() === word.toLowerCase()) || (words.includes(answer.trim().toLowerCase()))) {
@@ -200,7 +199,7 @@ const app = {
         } else if (parseInt(answer.trim()) == 1) {
             this.getUserInput('\n Enter the Word ->', word, type, words)
         } else if (parseInt(answer.trim()) == 2) {
-            this.gethint(word,type,words)
+            this.gethint(word, type, words)
         } else if (parseInt(answer.trim()) == 3) {
             console.log("\n The Word is " + word.toUpperCase())
             this.getWordDetail(this.word, "synonyms")
@@ -220,12 +219,12 @@ const app = {
     gameaction: function(word, type, words) {
         let random_index = this.getRandomIndex(0, words.length - 1)
         question = "\n Find the Word. " + type.slice(0, type.length - 1) + ' of the word is "' + words[random_index] + '"\n Enter Your Answer -> '
-        words.splice(random_index,1)
+        words.splice(random_index, 1)
         this.getUserInput(question, word, type, words)
     },
     playgame: function() {
         this.random_action = ["synonyms", "definitions", "antonyms"]
-        this.word_index = this.getRandomIndex(0, this.randomWords.length-1)
+        this.word_index = this.getRandomIndex(0, this.randomWords.length - 1)
         this.random_action_index = this.getRandomIndex(0, 1000) % 3
         this.word = this.randomWords[this.word_index]
         this.action = this.random_action[this.random_action_index]
@@ -238,5 +237,3 @@ const app = {
     }
 }
 module.exports = app.parseInput()
-
-                
