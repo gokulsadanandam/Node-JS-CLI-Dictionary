@@ -1,5 +1,4 @@
 let express = require('express'),
-    https = require('https'),
     request = require('request')
 const readline = require('readline');
 
@@ -183,7 +182,6 @@ const app = {
         this.getUserInput(' Try to Answer now-> \n', word, type, words)
     },
     gethint: function(word, type, words) {
-        console.log(words)
         let random_num = this.getRandomIndex(0, words.length - 1)
         if ((random_num % 2) == 1) {
             console.log("Another " + type + ' of the Word is "' + words[random_num] + '"')
