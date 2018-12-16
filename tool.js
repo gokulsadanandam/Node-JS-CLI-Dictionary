@@ -82,7 +82,7 @@ const app = {
                 break;
             case "def":
                 this.url = 'https://od-api.oxforddictionaries.com/api/v1/entries/en/' + this.word
-                this.getWordDetail(this.word, "definitions", true, this.url)
+                this.getWordDetail(this.word, "definitions", this.url)
                 break;
             case "game":
                 this.playgame()
