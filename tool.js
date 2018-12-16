@@ -65,12 +65,15 @@ const app = {
         switch (this.type) {
             case "syn":
                 this.getWordDetail(this.word, "synonyms")
+                rl.close()
                 break;
             case "ant":
                 this.getWordDetail(this.word, "antonyms")
+                rl.close()
                 break;
             case "ex":
                 this.getWordDetail(this.word, "sentences")
+                rl.close()
                 break;
             case "dict":
                 this.url = 'https://od-api.oxforddictionaries.com/api/v1/entries/en/' + this.word
@@ -78,10 +81,12 @@ const app = {
                 this.getWordDetail(this.word, "synonyms")
                 this.getWordDetail(this.word, "antonyms")
                 this.getWordDetail(this.word, "sentences")
+                rl.close()
                 break;
             case "def":
                 this.url = 'https://od-api.oxforddictionaries.com/api/v1/entries/en/' + this.word
                 this.getWordDetail(this.word, "definitions", this.url)
+                rl.close()
                 break;
             case "game":
                 this.playgame()
@@ -178,14 +183,14 @@ const app = {
             sword[j] = tmp;
         }
         sword = sword.join("");
-        console.log(" The Scrambled Word is " + sword + "\n")
-        this.getUserInput(' Try to Answer now-> \n', word, type, words)
+        console.log(" The Scrambled Word is " + sword)
+        this.getUserInput(' Try to Answer now-> ', word, type, words)
     },
     gethint: function(word, type, words) {
-        let random_num = this.getRandomIndex(0, words.length - 1)
+        let random_num = this.getRandomIndex(0, words.length)
         if ((random_num % 2) == 1) {
-            console.log("Another " + type + ' of the Word is "' + words[random_num] + '"')
-            this.getUserInput('Enter the Word\n', word, type, words)
+            console.log(" Another " + type + ' of the Word is "' + words[random_num] + '"')
+            this.getUserInput(' Try to Answer now->', word, type, words)
         } else {
             this.shuffle(word, type, words)
         }
